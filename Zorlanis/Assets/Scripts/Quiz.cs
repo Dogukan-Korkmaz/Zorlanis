@@ -16,6 +16,12 @@ public class Quiz : MonoBehaviour
 
     void Start()
     {
+        GetNextQuestion();
+        //DisplayQuestion();
+    }
+
+    void DisplayQuestion()
+    {
         questionText.text = question.GetQuestion();
 
         for (int i = 0; i < answerButtons.Length; i++)//Sorularýn cevaplarýný ekrandaki butonlara yazdýrýlmasý.
@@ -25,22 +31,51 @@ public class Quiz : MonoBehaviour
         }
     }
 
+    void SetButtonState(bool state)
+    {
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            Button button = answerButtons[i].GetComponent<Button>();
+            button.interactable = state;
+        }
+    }
+
+    void GetNextQuestion()
+    {
+        SetButtonState(true);
+        DisplayQuestion();
+        SetDefaultButtonSprites();
+    }
+
+    void SetDefaultButtonSprites()
+    {
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            Image button = answerButtons[i].GetComponent<Image>();
+            button.sprite = defaultAnswerSprite;
+        }
+    }
+
+
+
     public void OnAnswerSelected(int index)//Cevaplarýn birinde týklandýðýnda çalýþacak yer.
     {
         string correctAnswer;
 
         if (index == question.GetCorrectAnswerIndex())//Cevap doðruysa.
         {
+            //SetButtonState(false);
             ShowSelectedAnswer();
-            Wait();
+            //Wait();
             //MakeItDefault();
             ShowCorrectAnswer();
             questionText.text = "Doðru!";
         }
         else//Cevap yanlýþsa.
         {
+            //SetButtonState(false);
             ShowSelectedAnswer();
-            Wait();
+            //Wait();
             ShowCorrectAnswer();
             questionText.text = "Yanlýþ! \n Doðru cevap  : " + correctAnswer + ".";            
         }
@@ -69,6 +104,8 @@ public class Quiz : MonoBehaviour
         {
             Thread.Sleep(1500);
         }
+
+        SetButtonState(false);
     }
 }
 
