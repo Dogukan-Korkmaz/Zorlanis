@@ -31,7 +31,8 @@ public class Quiz : MonoBehaviour
         }
     }
 
-    void SetButtonState(bool state)
+    void SetButtonState(bool state)//Butonlarýn
+                                   //basýlabilir olup olamayacaðýný ayarlar.
     {
         for (int i = 0; i < answerButtons.Length; i++)
         {
@@ -47,7 +48,8 @@ public class Quiz : MonoBehaviour
         SetDefaultButtonSprites();
     }
 
-    void SetDefaultButtonSprites()
+    void SetDefaultButtonSprites()//Cevaplarýn
+                                  //varsayýlan renk yapar
     {
         for (int i = 0; i < answerButtons.Length; i++)
         {
@@ -56,7 +58,7 @@ public class Quiz : MonoBehaviour
         }
     }
 
-
+    
 
     public void OnAnswerSelected(int index)//Cevaplarýn birinde týklandýðýnda çalýþacak yer.
     {
@@ -100,10 +102,10 @@ public class Quiz : MonoBehaviour
         //    buttonImage.sprite = defaultAnswerSprite;
         //}
 
-        void Wait()//Cevaba týklandýktan sonra bir miktar bekleme süresi devreye girsin.
-        {
-            Thread.Sleep(1500);
-        }
+        //void Wait()//Cevaba týklandýktan sonra bir miktar bekleme süresi devreye girsin.
+        //{
+        //    Thread.Sleep(1500);
+        //}
 
         SetButtonState(false);
     }
