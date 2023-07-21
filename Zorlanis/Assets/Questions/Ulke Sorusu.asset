@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Ke\u015Fan ad\u0131n\u0131 kullanan ba\u015Fka bir \u015Fehri olan \xFClke
     a\u015Fa\u011F\u0131dakilerden hangisidir ?"
+  answers:
+  - 'Irak  '
+  - "\u0130ran"
+  - Tunus
+  - Sudan
+  correctAnswerIndex: 1

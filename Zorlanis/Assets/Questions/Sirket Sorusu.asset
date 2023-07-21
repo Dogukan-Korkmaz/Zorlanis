@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "A\u015Fa\u011F\u0131dakilerden hangisi Ke\u015Fan Vergi Dairesi'ne kay\u0131tl\u0131
     \u015Firket say\u0131s\u0131d\u0131r ?"
+  answers:
+  - '247    '
+  - 378
+  - 411
+  - 612
+  correctAnswerIndex: 2

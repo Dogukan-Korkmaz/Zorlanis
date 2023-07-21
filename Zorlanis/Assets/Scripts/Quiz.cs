@@ -7,27 +7,55 @@ using System.Threading;
 
 public class Quiz : MonoBehaviour
 {
+    [Header("Questions")]
     [SerializeField] TextMeshProUGUI questionText;
-    [SerializeField] QuestionSO question;
+    [SerializeField] List<QuestionSO> questions = new List<QuestionSO>();
+    QuestionSO currentQuestion;
+
+    [Header("Answers")]
     [SerializeField]GameObject[] answerButtons;
+    bool hasAnsweredEalry;
+
+    [Header("Button Colors")]
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
+
+    [Header("Timer")]
+    [SerializeField] Image timerImage;
+    Timer timer;
     Image buttonImage;
 
     void Start()
     {
-        GetNextQuestion();
-        //DisplayQuestion();
+        timer = FindObjectOfType<Timer>();
+        DisplayQuestion();
+        GetNextQuestion();      
+    }
+
+    void Update()
+    {
+        timerImage.fillAmount = timer.fillFraction;
+        if (timer.loadNextQuestion)
+        {
+            hasAnsweredEalry = false;
+            GetNextQuestion();
+            timer.loadNextQuestion = false;
+        }
+        else if(!hasAnsweredEalry && !timer.isAnsweringQuestion)
+        {
+            DisplayAnswer(-1);
+            SetButtonState(false);
+        }
     }
 
     void DisplayQuestion()
     {
-        questionText.text = question.GetQuestion();
+        questionText.text = currentQuestion.GetQuestion();
 
         for (int i = 0; i < answerButtons.Length; i++)//Sorularýn cevaplarýný ekrandaki butonlara yazdýrýlmasý.
         {
             TextMeshProUGUI buttonText = answerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = question.GetAnswer(i);
+            buttonText.text = currentQuestion.GetAnswer(i);
         }
     }
 
@@ -41,30 +69,11 @@ public class Quiz : MonoBehaviour
         }
     }
 
-    void GetNextQuestion()
-    {
-        SetButtonState(true);
-        DisplayQuestion();
-        SetDefaultButtonSprites();
-    }
-
-    void SetDefaultButtonSprites()//Cevaplarýn
-                                  //varsayýlan renk yapar
-    {
-        for (int i = 0; i < answerButtons.Length; i++)
-        {
-            Image button = answerButtons[i].GetComponent<Image>();
-            button.sprite = defaultAnswerSprite;
-        }
-    }
-
-    
-
-    public void OnAnswerSelected(int index)//Cevaplarýn birinde týklandýðýnda çalýþacak yer.
+    void DisplayAnswer(int index)
     {
         string correctAnswer;
 
-        if (index == question.GetCorrectAnswerIndex())//Cevap doðruysa.
+        if (index == currentQuestion.GetCorrectAnswerIndex())//Cevap doðruysa.
         {
             //SetButtonState(false);
             ShowSelectedAnswer();
@@ -79,15 +88,15 @@ public class Quiz : MonoBehaviour
             ShowSelectedAnswer();
             //Wait();
             ShowCorrectAnswer();
-            questionText.text = "Yanlýþ! \n Doðru cevap  : " + correctAnswer + ".";            
+            questionText.text = "Yanlýþ! \n Doðru cevap  : " + correctAnswer + ".";
         }
 
         void ShowCorrectAnswer()//Yanlýþ cevap seçildiðinde doðru cevap gösterilsin.
         {
-            int correctAnswerIndex = question.GetCorrectAnswerIndex();
+            int correctAnswerIndex = currentQuestion.GetCorrectAnswerIndex();
             buttonImage = answerButtons[correctAnswerIndex].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
-            correctAnswer = question.GetAnswer(correctAnswerIndex);
+            correctAnswer = currentQuestion.GetAnswer(correctAnswerIndex);
         }
 
         void ShowSelectedAnswer()
@@ -108,6 +117,47 @@ public class Quiz : MonoBehaviour
         //}
 
         SetButtonState(false);
+        timer.CancelTimer();
+    }
+
+    void GetNextQuestion()
+    {
+        if (questions.Count > 0)
+        {
+            SetButtonState(true);
+            GetRandomQuestions();
+            SetDefaultButtonSprites();
+            DisplayQuestion();
+        }
+    }
+
+    void GetRandomQuestions()//Rastgele bir soru seçilmesini saðlar ve
+                                     //seçilen sorunun havuzdan çýkartýlmasýný saðlar.
+    {
+        int index = UnityEngine.Random.Range(0, questions.Count);
+        currentQuestion = questions[index];
+        if (questions.Contains(currentQuestion))
+        {
+            questions.Remove(currentQuestion);
+        }        
+    }
+
+    void SetDefaultButtonSprites()//Cevaplarýn
+                                  //varsayýlan renk yapar
+    {
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            Image button = answerButtons[i].GetComponent<Image>();
+            button.sprite = defaultAnswerSprite;
+        }
+    }
+
+    public void OnAnswerSelected(int index)//Cevaplarýn birinde týklandýðýnda çalýþacak yer.
+    {
+        hasAnsweredEalry = true;
+        DisplayAnswer(index);
+        SetButtonState(false);
+        timer.CancelTimer();
     }
 }
 

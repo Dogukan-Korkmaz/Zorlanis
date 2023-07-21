@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Ke\u015Fan tarihi boyunca hangi etnik grup y\xF6netiminde hi\xE7 kalmam\u0131\u015Ft\u0131r
     ?"
+  answers:
+  - 'Yunan '
+  - "Mo\u011Fol"
+  - Pers
+  - Bizans
+  correctAnswerIndex: 1

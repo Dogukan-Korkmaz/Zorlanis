@@ -1015,10 +1015,10 @@ RectTransform:
   m_Father: {fileID: 205661043}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 799.0386, y: 352.80148}
-  m_SizeDelta: {x: 116.3932, y: 116.8406}
+  m_AnchorMin: {x: 0.88500005, y: 0.7758519}
+  m_AnchorMax: {x: 0.947, y: 0.8804815}
+  m_AnchoredPosition: {x: -0.9614258, y: -1.6985168}
+  m_SizeDelta: {x: -3.6068115, y: 3.8406067}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &645629890
 MonoBehaviour:
@@ -1046,8 +1046,8 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillClockwise: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &645629891
@@ -1248,7 +1248,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionText: {fileID: 1601096675}
-  question: {fileID: 11400000, guid: eb55cf46aff42c949b9c89a1acdd6494, type: 2}
+  questions:
+  - {fileID: 11400000, guid: eb55cf46aff42c949b9c89a1acdd6494, type: 2}
+  - {fileID: 11400000, guid: 6582f67e246b3e6458269f8f991517f3, type: 2}
+  - {fileID: 11400000, guid: 705edbcbe70dba8409cd5cea3c94981a, type: 2}
+  - {fileID: 11400000, guid: fe363294e72e89d4498c65bbb927f0ae, type: 2}
+  - {fileID: 11400000, guid: 3e3a048766c5d854292f6e5da5ab854d, type: 2}
   answerButtons:
   - {fileID: 1107635930}
   - {fileID: 1754333990}
@@ -1256,6 +1261,7 @@ MonoBehaviour:
   - {fileID: 131034734}
   defaultAnswerSprite: {fileID: 21300000, guid: 39d47a9177e56f94bb54c3893cb065f1, type: 3}
   correctAnswerSprite: {fileID: 21300000, guid: 2bbc3693f4085f9429ba1d0e560b0d52, type: 3}
+  timerImage: {fileID: 645629890}
 --- !u!1 &1107635930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1759,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToCompleteTheQuestion: 30
-  timeToShowCorrectAnswer: 10
+  timeToShowCorrectAnswer: 5
+  loadNextQuestion: 0
+  isAnsweringQuestion: 0
+  fillFraction: 0
 --- !u!4 &1497192649
 Transform:
   m_ObjectHideFlags: 0

@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Yuzolcumu Sorusu
   m_EditorClassIdentifier: 
   question: "Ke\u015Fan'\u0131n y\xFCz\xF6l\xE7\xFCm\xFC ka\xE7 km\xB2'dir ?"
+  answers:
+  - '886   '
+  - 903
+  - 1087
+  - 1154
+  correctAnswerIndex: 2
