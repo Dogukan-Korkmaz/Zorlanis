@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769fb3dcfa433484e876595b01303432, type: 3}
   m_Name: zorlanis
   m_EditorClassIdentifier: 
-  question: Soruyu buraya gir.
+  question: "B\xF6lgeye M.\xD6. 30 yy'dan itibaren gelmeye ba\u015Flayan Luviler
+    bug\xFCn\xFCn Ke\u015Fan'\u0131na ne ad vermi\u015Flerdir ?"
   answers:
-  - 
-  - 
-  - 
-  - 
-  correctAnswerIndex: 0
+  - "Topke\u015Fan"
+  - Thrace
+  - Zorlanis
+  - Hadrianopolis
+  correctAnswerIndex: 2
