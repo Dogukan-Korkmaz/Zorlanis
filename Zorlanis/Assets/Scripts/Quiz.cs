@@ -25,9 +25,15 @@ public class Quiz : MonoBehaviour
     Timer timer;
     Image buttonImage;
 
+    [Header("Scoring")]
+    [SerializeField] TextMeshProUGUI scoreText;
+    ScoreKeeper scoreKeeper;
+
+
     void Start()
     {
         timer = FindObjectOfType<Timer>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
         DisplayQuestion();
         GetNextQuestion();      
     }
@@ -81,6 +87,7 @@ public class Quiz : MonoBehaviour
             //MakeItDefault();
             ShowCorrectAnswer();
             questionText.text = "Doðru!";
+            scoreKeeper.IncrementCorrectAnswers();
         }
         else//Cevap yanlýþsa.
         {
@@ -128,6 +135,7 @@ public class Quiz : MonoBehaviour
             GetRandomQuestions();
             SetDefaultButtonSprites();
             DisplayQuestion();
+            scoreKeeper.IncrementGetQuestionSeen();
         }
     }
 
@@ -158,6 +166,8 @@ public class Quiz : MonoBehaviour
         DisplayAnswer(index);
         SetButtonState(false);
         timer.CancelTimer();
+        scoreText.text = "Skor :  " + scoreKeeper.CalculateScore() + "%";
+        Debug.Log(scoreText);
     }
 }
 

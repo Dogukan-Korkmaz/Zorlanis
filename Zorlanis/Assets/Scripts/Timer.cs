@@ -52,7 +52,7 @@ public class Timer : MonoBehaviour
                 loadNextQuestion = true;
             }
         }
-        Debug.Log(isAnsweringQuestion + " : " + timerValue + " = " +  fillFraction);
+        //Debug.Log(isAnsweringQuestion + " : " + timerValue + " = " +  fillFraction);
     }
 }
 

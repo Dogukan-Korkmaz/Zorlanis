@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769fb3dcfa433484e876595b01303432, type: 3}
+  m_Name: Baslica Uretim
+  m_EditorClassIdentifier: 
+  question: "A\u015Fa\u011F\u0131dakilerden hangisi Ke\u015Fan'da ba\u015Fl\u0131ca
+    \xFCretilen tar\u0131m \xFCr\xFCnlerinden biri de\u011Fildir ?"
+  answers:
+  - "\xC7eltik"
+  - "Bu\u011Fday"
+  - Pamuk
+  - "Ay\xE7i\xE7e\u011Fi"
+  correctAnswerIndex: 0
