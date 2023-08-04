@@ -11,6 +11,7 @@ public class EndScreen : MonoBehaviour
     void Awake()
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        ShowFinalScore();
     }
 
     public void ShowFinalScore()

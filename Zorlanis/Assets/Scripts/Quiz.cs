@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Threading;
 
 public class Quiz : MonoBehaviour
 {
@@ -32,7 +31,7 @@ public class Quiz : MonoBehaviour
     [Header("ProgressBar")]
     [SerializeField] Slider progressBar;
 
-    public bool isComplate;
+    public bool isComplate = false;
 
 
     void Awake()
@@ -123,13 +122,6 @@ public class Quiz : MonoBehaviour
             buttonImage = answerButtons[index].GetComponent<Image>();
             buttonImage.sprite = correctAnswerSprite;
         }
-
-        //void MakeItDefault()
-        //{
-        //    buttonImage = answerButtons[index].GetComponent<Image>();
-        //    buttonImage.sprite = defaultAnswerSprite;
-        //}
-
 
         SetButtonState(false);
         timer.CancelTimer();
