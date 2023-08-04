@@ -14,7 +14,7 @@ public class Quiz : MonoBehaviour
 
     [Header("Answers")]
     [SerializeField]GameObject[] answerButtons;
-    bool hasAnsweredEalry;
+    bool hasAnsweredEalry = true;
 
     [Header("Button Colors")]
     [SerializeField] Sprite defaultAnswerSprite;
@@ -35,7 +35,7 @@ public class Quiz : MonoBehaviour
     public bool isComplate;
 
 
-    void Start()
+    void Awake()
     {
         timer = FindObjectOfType<Timer>();
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
@@ -48,6 +48,13 @@ public class Quiz : MonoBehaviour
     void Update()
     {
         timerImage.fillAmount = timer.fillFraction;
+
+        if (progressBar.value == progressBar.maxValue)//Oyunun bittiðinin anlaþýlmasý.
+        {
+            isComplate = true;
+            return;
+        }
+
         if (timer.loadNextQuestion)
         {
             hasAnsweredEalry = false;
@@ -56,7 +63,7 @@ public class Quiz : MonoBehaviour
         }
         else if(!hasAnsweredEalry && !timer.isAnsweringQuestion)
         {
-            DisplayAnswer(-1);
+            DisplayAnswer(0);
             SetButtonState(false);
         }
     }
@@ -90,7 +97,6 @@ public class Quiz : MonoBehaviour
         {
             //SetButtonState(false);
             ShowSelectedAnswer();
-            //Wait();
             //MakeItDefault();
             ShowCorrectAnswer();
             questionText.text = "Doðru!";
@@ -100,7 +106,6 @@ public class Quiz : MonoBehaviour
         {
             //SetButtonState(false);
             ShowSelectedAnswer();
-            //Wait();
             ShowCorrectAnswer();
             questionText.text = "Yanlýþ! \n Doðru cevap  : " + correctAnswer + ".";
         }
@@ -125,10 +130,6 @@ public class Quiz : MonoBehaviour
         //    buttonImage.sprite = defaultAnswerSprite;
         //}
 
-        //void Wait()//Cevaba týklandýktan sonra bir miktar bekleme süresi devreye girsin.
-        //{
-        //    Thread.Sleep(1500);
-        //}
 
         SetButtonState(false);
         timer.CancelTimer();
@@ -143,7 +144,6 @@ public class Quiz : MonoBehaviour
             SetDefaultButtonSprites();
             DisplayQuestion();
             progressBar.value++;
-            //ProgressBarBugHandler();
             scoreKeeper.IncrementGetQuestionSeen();
         }
     }
@@ -176,22 +176,7 @@ public class Quiz : MonoBehaviour
         SetButtonState(false);
         timer.CancelTimer();
         scoreText.text = "Skor :  " + scoreKeeper.CalculateScore() + "%";
-
-        if (progressBar.value == progressBar.maxValue)
-        {
-            isComplate = true;
-        }
     }
-
-    //void ProgressBarBugHandler()
-    //{
-    //    bool bum = true;
-    //    if (bum == true)
-    //    {
-    //        progressBar.value--;
-    //        bum = false;
-    //    }
-    //}
 }
 
 

@@ -7,6 +7,8 @@ public class Timer : MonoBehaviour
     [SerializeField] float timeToCompleteTheQuestion = 30f;
     [SerializeField] float timeToShowCorrectAnswer = 5f;
 
+    Quiz quiz;
+
     public bool loadNextQuestion;
     float timerValue;
     public bool isAnsweringQuestion;
@@ -31,7 +33,7 @@ public class Timer : MonoBehaviour
         {
             if (timerValue > 0)
             {
-                 fillFraction = timerValue / timeToCompleteTheQuestion;
+                fillFraction = timerValue / timeToCompleteTheQuestion;
             }
             else
             {
@@ -52,7 +54,6 @@ public class Timer : MonoBehaviour
                 loadNextQuestion = true;
             }
         }
-        //Debug.Log(isAnsweringQuestion + " : " + timerValue + " = " +  fillFraction);
     }
 }
 

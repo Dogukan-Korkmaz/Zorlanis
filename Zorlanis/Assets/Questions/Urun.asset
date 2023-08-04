@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Urun
   m_EditorClassIdentifier: 
   question: "A\u015Fa\u011F\u0131dakilerden hangisi Ke\u015Fan'da \xFCretilen \xFCr\xFCnlerin
-    a\u011F\u0131rl\u0131kl\u0131 olarak sevk edildi\u011Fi ilimizdir?\r\nAnkara    
-    istanbul*     izmir    yalova "
+    a\u011F\u0131rl\u0131kl\u0131 olarak sevk edildi\u011Fi ilimizdir?\r"
   answers:
   - 'Ankara '
   - "\u0130stanbul"
